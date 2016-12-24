@@ -44,7 +44,7 @@ public class GameBoard extends RelativeLayout {
     }
 
     private void init(){
-        MainActivity.gameBoard = this;
+        GameBoardActivity.gameBoard = this;
         inflate(getContext(), R.layout.game_board, this);
         this.setupHierarchy();
     }
@@ -66,11 +66,18 @@ public class GameBoard extends RelativeLayout {
         mPlayer.start();
     }
 
-    public void lookForPoints(){
+    public void playRobot(){
+        MediaPlayer mPlayer = MediaPlayer.create(getContext(), R.raw.robot);
+        mPlayer.start();
+    }
+
+    private void lfpVertival(){
         for(LittleBoxContainer cont : this.littleBoxContainers){
             cont.lookForPoints();
         }
+    }
 
+    private void lfpHorizontal(){
         LittleBoxContainer a; LittleBoxContainer b; LittleBoxContainer c;
         LittleBox aa; LittleBox bb; LittleBox cc;
         int _x; int _y; int _z;
@@ -90,7 +97,7 @@ public class GameBoard extends RelativeLayout {
                     _y = bb.getColorNumber();
                     _z = cc.getColorNumber();
                     if(_x == _y && _x == _z){
-                        MainActivity.gameScore.addPoints(
+                        GameBoardActivity.gameScore.addPoints(
                                 aa.getColorValue() + bb.getColorValue() + cc.getColorValue()
                         );
                         a.setDying(new int[]{aa.getyValue()}, false);
@@ -103,6 +110,52 @@ public class GameBoard extends RelativeLayout {
                 }
             }
         }
+    }
+
+    private void lfpQuad(){
+        LittleBoxContainer a; LittleBoxContainer b; LittleBoxContainer c;
+        LittleBox aa; LittleBox bb; LittleBox aaa; LittleBox bbb;
+        int _a; int _b; int _aa; int _bb;
+
+        for(int x = 1; x < this.littleBoxContainers.size(); x++) {
+            a = this.littleBoxContainers.get(x-1);
+            b = this.littleBoxContainers.get(x);
+
+            for(int y = 1; y < LittleBoxContainer.rows; y++){
+                if(a.hasBoxAt(y) && b.hasBoxAt(y)){
+                    aa = a.getBoxAt(y);
+                    bb = b.getBoxAt(y);
+                    aaa = a.getBoxAt(y-1);
+                    bbb = b.getBoxAt(y-1);
+
+                    _a = aa.getColorNumber();
+                    _b = bb.getColorNumber();
+                    _aa = aaa.getColorNumber();
+                    _bb = bbb.getColorNumber();
+                    if(_a == _b && _a == _aa && _a == _bb){
+                        GameBoardActivity.gameScore.addPoints(aa.getColorValue() * 4);
+
+                        a.setGrouped(new int[]{
+                                aa.getyValue(),
+                                aaa.getyValue()
+                        }, true);
+
+                        b.setGrouped(new int[]{
+                                bb.getyValue(),
+                                bbb.getyValue()
+                        }, false);
+
+                        playRobot();
+                    }
+                }
+            }
+        }
+    }
+
+    public void lookForPoints(){
+        lfpVertival();
+        lfpHorizontal();
+        lfpQuad();
 
         if(timer != null){
             try {
@@ -117,7 +170,7 @@ public class GameBoard extends RelativeLayout {
             public void run() {
                 if(needsRemove){
                     needsRemove = false;
-                    MainActivity.mainActivity.runOnUiThread(new Runnable() {
+                    GameBoardActivity.gameBoardActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             removeBoxes();
@@ -127,12 +180,20 @@ public class GameBoard extends RelativeLayout {
                 }
             }
         }, 1000);
-
     }
 
     private void removeBoxes(){
+        int numBoxes = 0;
+        ArrayList<LittleBoxContainer> temp = new ArrayList<>();
         for(LittleBoxContainer cont : this.littleBoxContainers){
-            cont.removeBoxes();
+            numBoxes = cont.removeBoxes();
+            if(numBoxes > 0){
+                temp.add(cont);
+            }
+        }
+        this.littleBoxContainers = temp;
+        if(this.littleBoxContainers.size() == 0){
+            GameBoardActivity.gameBoardActivity.startScoreBoard();
         }
     }
 }

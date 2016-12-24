@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Little Blocks</string>
+    <string name="app_id">837193866647</string>
     <string name="game_score">Score:</string>
 </resources>

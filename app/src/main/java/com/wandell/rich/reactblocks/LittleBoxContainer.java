@@ -1,14 +1,9 @@
 package com.wandell.rich.reactblocks;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -71,12 +66,23 @@ public class LittleBoxContainer extends LinearLayout {
             bc = b.getColorNumber();
             cc = c.getColorNumber();
 
-            if (ac == bc && ac == cc) {
+            if (
+                    (
+                            (ac == bc)
+                                    ||
+                                    (ac == -1 || bc == -1)
+                    ) &&
+                            (
+                                    (ac == cc)
+                                            ||
+                                            (ac == -1 || cc == -1)
+                            )
+                    ) {
                 this.setDying(
                         new int[]{a.getyValue(), b.getyValue(), c.getyValue()},
                         true
                 );
-                MainActivity.gameScore.addPoints(
+                GameBoardActivity.gameScore.addPoints(
                         a.getColorValue() + b.getColorValue() + c.getColorValue()
                 );
             }
@@ -96,7 +102,15 @@ public class LittleBoxContainer extends LinearLayout {
         }
     }
 
-    public void removeBoxes(){
+    public void setGrouped(int[] grouped, boolean left){
+        LittleBox box;
+        for(int aGrouped : grouped){
+            box = this.littleBoxes.get(aGrouped);
+            box.setGrouped(left, aGrouped == grouped[0]);
+        }
+    }
+
+    public int removeBoxes(){
         this.visibleBoxes = new ArrayList<>();
 
         for (LittleBox aBox : this.littleBoxes) {
@@ -106,6 +120,7 @@ public class LittleBoxContainer extends LinearLayout {
                 aBox.setVisibility(View.GONE);
             }
         }
+        return this.visibleBoxes.size();
     }
 
     private void setupHierarchy() {

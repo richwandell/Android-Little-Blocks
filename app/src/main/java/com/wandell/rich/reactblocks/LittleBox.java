@@ -1,10 +1,10 @@
 package com.wandell.rich.reactblocks;
 
 import android.content.Context;
+import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -35,12 +35,14 @@ public class LittleBox extends LinearLayout {
         @Override
         public void onClick(View view) {
             container.setDying(new int[]{yValue}, false);
-            MainActivity.gameScore.addPoints(getColorValue());
-            MainActivity.gameBoard.lookForPoints();
+            GameBoardActivity.gameScore.addPoints(getColorValue());
+            GameBoardActivity.gameBoard.lookForPoints();
         }
     };
 
     private boolean dying;
+
+    private boolean grouped;
 
     private Animation animIn;
 
@@ -77,6 +79,25 @@ public class LittleBox extends LinearLayout {
         animIn = AnimationUtils.loadAnimation(getContext(), R.anim.lb_die_1);
         this.setAnimation(animIn);
         this.startAnimation(animIn);
+    }
+
+    public void setGrouped(boolean left, boolean top){
+        this.grouped = true;
+
+        LayerDrawable layer;
+        if(left && top){
+            layer = (LayerDrawable) ContextCompat.getDrawable(getContext(), R.drawable.lb_gold_ul);
+        }else if(left){
+            layer = (LayerDrawable) ContextCompat.getDrawable(getContext(), R.drawable.lb_gold_ll);
+        }else if(top){
+            layer = (LayerDrawable) ContextCompat.getDrawable(getContext(), R.drawable.lb_gold_ur);
+        }else{
+            layer = (LayerDrawable) ContextCompat.getDrawable(getContext(), R.drawable.lb_gold_lr);
+        }
+        this.setBackground(layer);
+        this.refreshDrawableState();
+        this.value *= 4;
+        this.colorNumber = -1;
     }
 
     public boolean getDying(){

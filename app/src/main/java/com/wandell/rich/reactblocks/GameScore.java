@@ -2,10 +2,9 @@ package com.wandell.rich.reactblocks;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 
-public class GameScore extends TextView{
+public class GameScore extends TypewriterTextView{
 
     private int currentScore = 0;
 
@@ -25,11 +24,15 @@ public class GameScore extends TextView{
     }
 
     public void init(){
-        MainActivity.gameScore = this;
+        GameBoardActivity.gameScore = this;
     }
 
     public void addPoints(int points){
         this.currentScore += points;
         this.setText("SCORE: " + Integer.toString(this.currentScore));
+    }
+
+    public int getPoints(){
+        return this.currentScore;
     }
 }
