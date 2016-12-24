@@ -7,6 +7,10 @@ import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static GameBoard gameBoard;
+    public static GameScore gameScore;
+    public static MainActivity mainActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +27,6 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        mainActivity = this;
     }
 }

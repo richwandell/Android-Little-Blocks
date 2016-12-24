@@ -3,8 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="little_box_width">30dp</dimen>
-    <dimen name="little_box_height">30dp</dimen>
-    <dimen name="little_box_container_height">567dp</dimen>
+    <dimen name="little_box_width">40dp</dimen>
+    <dimen name="little_box_height">40dp</dimen>
+    <dimen name="little_box_container_height">550dp</dimen>
+    <dimen name="little_box_container_width">45dp</dimen>
     <dimen name="little_box_container_margin">5dp</dimen>
 </resources>

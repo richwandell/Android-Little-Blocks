@@ -1,13 +1,13 @@
 package com.wandell.rich.reactblocks;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import java.util.Random;
@@ -15,8 +15,11 @@ import java.util.Random;
 
 public class LittleBox extends LinearLayout {
 
-    private String color;
+    private int colorNumber;
+
     private int value;
+
+    private int yValue;
 
     private static int PINK = 100;
     private static int PURPLE = 200;
@@ -25,6 +28,21 @@ public class LittleBox extends LinearLayout {
     private static int RED = 400;
     private static int GREEN = 450;
     private static int BROWN = 200;
+
+    private LittleBoxContainer container;
+
+    private View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            container.setDying(new int[]{yValue}, false);
+            MainActivity.gameScore.addPoints(getColorValue());
+            MainActivity.gameBoard.lookForPoints();
+        }
+    };
+
+    private boolean dying;
+
+    private Animation animIn;
 
     public LittleBox(Context context) {
         super(context);
@@ -42,16 +60,44 @@ public class LittleBox extends LinearLayout {
     }
 
     private void init() {
+        this.setOnClickListener(this.listener);
+        this.setupColor();
+    }
 
-        this.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("richd", Integer.toString(value));
-            }
-        });
+    public void setParent(LittleBoxContainer container) {
+        this.container = container;
+    }
 
+    public void setyValue(int y){
+        this.yValue = y;
+    }
+
+    public void setDying(){
+        this.dying = true;
+        animIn = AnimationUtils.loadAnimation(getContext(), R.anim.lb_die_1);
+        this.setAnimation(animIn);
+        this.startAnimation(animIn);
+    }
+
+    public boolean getDying(){
+        return this.dying;
+    }
+
+    public int getyValue(){
+        return this.yValue;
+    }
+
+    public int getColorValue(){
+        return this.value;
+    }
+
+    public int getColorNumber(){
+        return this.colorNumber;
+    }
+
+    private void setupColor() {
         Random r = new Random();
-        int colorNumber = r.nextInt(7);
+        colorNumber = r.nextInt(7);
         View v = inflate(getContext(), R.layout.little_box, this);
         StateListDrawable selector;
         switch (colorNumber) {
@@ -59,6 +105,7 @@ public class LittleBox extends LinearLayout {
                 selector = (StateListDrawable) ContextCompat.getDrawable(getContext(), R.drawable.little_box_pink);
                 v.setBackground(selector);
                 v.refreshDrawableState();
+
                 this.value = LittleBox.PINK;
                 break;
             case 1:
@@ -70,6 +117,7 @@ public class LittleBox extends LinearLayout {
             case 2:
                 selector = (StateListDrawable) ContextCompat.getDrawable(getContext(), R.drawable.little_box_blue);
                 v.setBackground(selector);
+
                 v.refreshDrawableState();
                 this.value = LittleBox.BLUE;
                 break;
@@ -99,4 +147,5 @@ public class LittleBox extends LinearLayout {
                 break;
         }
     }
+
 }

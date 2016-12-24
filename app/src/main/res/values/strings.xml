@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">React Blocks</string>
+    <string name="app_name">Little Blocks</string>
+    <string name="game_score">Score:</string>
 </resources>

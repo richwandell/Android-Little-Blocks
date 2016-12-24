@@ -4,13 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="bottom|center_horizontal"
     android:hapticFeedbackEnabled="true"
     app:layout_anchorGravity="center_horizontal"
     android:layout_centerHorizontal="true"
     android:layout_centerInParent="true"
     android:layout_gravity="center_horizontal">
+
+    <com.wandell.rich.reactblocks.LittleBoxContainer
+        android:layout_height="@dimen/little_box_container_height"
+        android:layout_width="wrap_content" />
+    <com.wandell.rich.reactblocks.LittleBoxContainer
+        android:layout_height="@dimen/little_box_container_height"
+        android:layout_width="wrap_content" />
+
+    <com.wandell.rich.reactblocks.LittleBoxContainer
+        android:layout_height="@dimen/little_box_container_height"
+        android:layout_width="wrap_content" />
 
     <com.wandell.rich.reactblocks.LittleBoxContainer
         android:layout_height="@dimen/little_box_container_height"
@@ -25,15 +36,7 @@
         android:layout_height="@dimen/little_box_container_height"
         android:layout_width="wrap_content" />
     <com.wandell.rich.reactblocks.LittleBoxContainer
-        android:layout_height="@dimen/little_box_container_height"
-        android:layout_width="wrap_content" />
-    <com.wandell.rich.reactblocks.LittleBoxContainer
-        android:layout_height="@dimen/little_box_container_height"
-        android:layout_width="wrap_content" />
-    <com.wandell.rich.reactblocks.LittleBoxContainer
-        android:layout_height="@dimen/little_box_container_height"
-        android:layout_width="wrap_content" />
-    <com.wandell.rich.reactblocks.LittleBoxContainer
+
         android:layout_height="@dimen/little_box_container_height"
         android:layout_width="wrap_content" />
 </LinearLayout>

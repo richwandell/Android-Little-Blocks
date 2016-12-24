@@ -1,11 +1,30 @@
 package com.wandell.rich.reactblocks;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+
+import java.util.ArrayList;
 
 
 public class LittleBoxContainer extends LinearLayout {
+
+    public static int rows;
+
+    private ArrayList<LittleBox> littleBoxes = new ArrayList<>();
+
+    private ArrayList<LittleBox> visibleBoxes = new ArrayList<>();
+
+    private GameBoard board;
+
+    private int xValue = 0;
 
     public LittleBoxContainer(Context context) {
         super(context);
@@ -22,7 +41,97 @@ public class LittleBoxContainer extends LinearLayout {
         init();
     }
 
-    private void init(){
+    private void init() {
         inflate(getContext(), R.layout.little_box_container, this);
+        this.setupHierarchy();
+    }
+
+    public boolean hasBoxAt(int y){
+        int boxIndex = this.visibleBoxes.size() - 1;
+        return boxIndex >= y;
+    }
+
+    public LittleBox getBoxAt(int y){
+        return this.visibleBoxes.get(y);
+    }
+
+    public void lookForPoints() {
+        LittleBox a;
+        LittleBox b;
+        LittleBox c;
+        int ac;
+        int bc;
+        int cc;
+
+        for (int y = 2; y < visibleBoxes.size(); y++) {
+            a = visibleBoxes.get(y - 2);
+            b = visibleBoxes.get(y - 1);
+            c = visibleBoxes.get(y);
+            ac = a.getColorNumber();
+            bc = b.getColorNumber();
+            cc = c.getColorNumber();
+
+            if (ac == bc && ac == cc) {
+                this.setDying(
+                        new int[]{a.getyValue(), b.getyValue(), c.getyValue()},
+                        true
+                );
+                MainActivity.gameScore.addPoints(
+                        a.getColorValue() + b.getColorValue() + c.getColorValue()
+                );
+            }
+        }
+    }
+
+    public void setDying(int[] dying, boolean playClank) {
+        board.setNeedsRemove(true);
+        LittleBox box;
+        for (int aDying : dying) {
+            box = this.littleBoxes.get(aDying);
+            box.setDying();
+        }
+
+        if(playClank){
+            board.playMetalClank();
+        }
+    }
+
+    public void removeBoxes(){
+        this.visibleBoxes = new ArrayList<>();
+
+        for (LittleBox aBox : this.littleBoxes) {
+            if (!aBox.getDying()) {
+                this.visibleBoxes.add(aBox);
+            }else{
+                aBox.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void setupHierarchy() {
+        this.littleBoxes = new ArrayList<>();
+        ViewGroup boxes = (ViewGroup) this.getChildAt(0);
+        int childCount = boxes.getChildCount();
+        LittleBoxContainer.rows = childCount;
+        LittleBox box;
+        for (int y = 0; y < childCount; y++) {
+            box = (LittleBox) boxes.getChildAt(y);
+            this.littleBoxes.add(box);
+            this.visibleBoxes.add(box);
+            box.setParent(this);
+            box.setyValue(y);
+        }
+    }
+
+    public void setParent(GameBoard board) {
+        this.board = board;
+    }
+
+    public void setxValue(int xValue) {
+        this.xValue = xValue;
+    }
+
+    public int getxValue(){
+        return this.xValue;
     }
 }
