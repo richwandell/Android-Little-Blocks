@@ -1,10 +1,17 @@
-package com.wandell.rich.reactblocks;
+package com.wandell.rich.reactblocks.GameBoard;
 
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+
+import com.google.android.gms.games.Games;
+import com.wandell.rich.reactblocks.LittleBox.LittleBox;
+import com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer;
+import com.wandell.rich.reactblocks.R;
+import com.wandell.rich.reactblocks.State;
+import com.wandell.rich.reactblocks.Summary.SummaryActivity;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -193,7 +200,23 @@ public class GameBoard extends RelativeLayout {
         }
         this.littleBoxContainers = temp;
         if(this.littleBoxContainers.size() == 0){
+            State.GAMES_PLAYED++;
+            checkGameNumberAchievements();
             GameBoardActivity.gameBoardActivity.startScoreBoard();
+        }
+    }
+
+    private void checkGameNumberAchievements(){
+        if(State.GAMES_PLAYED == 1) {
+            this.unlockAchievement(getResources().getString(R.string.achievement_level_1_block_master));
+        }
+    }
+
+    private void unlockAchievement(String achievement){
+
+        if (SummaryActivity.googleApiClient != null && SummaryActivity.googleApiClient.isConnected()) {
+            // Call a Play Games services API method, for example:
+            Games.Achievements.unlock(SummaryActivity.googleApiClient, achievement);
         }
     }
 }

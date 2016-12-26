@@ -1,4 +1,4 @@
-package com.wandell.rich.reactblocks;
+package com.wandell.rich.reactblocks.LittleBox;
 
 import android.content.Context;
 import android.graphics.drawable.LayerDrawable;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+
+import com.wandell.rich.reactblocks.GameBoard.GameBoardActivity;
+import com.wandell.rich.reactblocks.R;
 
 import java.util.Random;
 

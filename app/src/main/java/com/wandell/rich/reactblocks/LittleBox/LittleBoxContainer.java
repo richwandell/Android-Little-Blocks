@@ -1,10 +1,14 @@
-package com.wandell.rich.reactblocks;
+package com.wandell.rich.reactblocks.LittleBox;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import com.wandell.rich.reactblocks.GameBoard.GameBoard;
+import com.wandell.rich.reactblocks.GameBoard.GameBoardActivity;
+import com.wandell.rich.reactblocks.R;
 
 import java.util.ArrayList;
 
@@ -144,9 +148,5 @@ public class LittleBoxContainer extends LinearLayout {
 
     public void setxValue(int xValue) {
         this.xValue = xValue;
-    }
-
-    public int getxValue(){
-        return this.xValue;
     }
 }

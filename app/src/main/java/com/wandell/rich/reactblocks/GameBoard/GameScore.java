@@ -1,10 +1,12 @@
-package com.wandell.rich.reactblocks;
+package com.wandell.rich.reactblocks.GameBoard;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.wandell.rich.reactblocks.Helpers.TypewriterTextView;
 
-public class GameScore extends TypewriterTextView{
+
+public class GameScore extends TypewriterTextView {
 
     private int currentScore = 0;
 
@@ -29,7 +31,7 @@ public class GameScore extends TypewriterTextView{
 
     public void addPoints(int points){
         this.currentScore += points;
-        this.setText("SCORE: " + Integer.toString(this.currentScore));
+        this.setText(Integer.toString(this.currentScore));
     }
 
     public int getPoints(){

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+    <string name="app_id">837193866647</string>
+    <string name="package_name">com.wandell.rich.reactblocks</string>
+    <string name="achievement_level_1_block_master" translatable="false">CgkIl7uS5a4YEAIQAQ</string>
+    <string name="achievement_gold_block_creator" translatable="false">CgkIl7uS5a4YEAIQAg</string>
+    <string name="achievement_diamond_block_creator" translatable="false">CgkIl7uS5a4YEAIQAw</string>
+    <string name="achievement_level_5_block_master" translatable="false">CgkIl7uS5a4YEAIQBA</string>
+    <string name="achievement_level_20_block_master" translatable="false">CgkIl7uS5a4YEAIQBQ</string>
+</resources>

@@ -4,10 +4,10 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wandell.rich.reactblocks.SummaryActivity"
+    tools:context="com.wandell.rich.reactblocks.Summary.SummaryActivity"
     android:orientation="vertical">
 
-    <com.wandell.rich.reactblocks.TypewriterTextView
+    <com.wandell.rich.reactblocks.Helpers.TypewriterTextView
         android:text="@string/app_name"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         android:textColor="#000000"
         android:alpha=".5" />
 
-    <com.wandell.rich.reactblocks.TypewriterTextView
+    <com.wandell.rich.reactblocks.Helpers.TypewriterTextView
         android:text="@string/app_name"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
         android:textColor="#00fb29"
         android:layout_marginTop="-60dp" />
 
-    <com.wandell.rich.reactblocks.SummaryListView
+    <com.wandell.rich.reactblocks.Summary.SummaryListView
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

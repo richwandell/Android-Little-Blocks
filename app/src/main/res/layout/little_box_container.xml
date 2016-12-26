@@ -8,44 +8,44 @@
     android:layout_gravity="top"
     app:layout_anchorGravity="top">
 
-    <com.wandell.rich.reactblocks.LittleBox
+    <com.wandell.rich.reactblocks.LittleBox.LittleBox
         android:rotation="180"
         android:layout_width="@dimen/little_box_width"
         android:layout_height="@dimen/little_box_height"
         android:hapticFeedbackEnabled="false" />
-    <com.wandell.rich.reactblocks.LittleBox
+    <com.wandell.rich.reactblocks.LittleBox.LittleBox
         android:rotation="180"
         android:layout_width="@dimen/little_box_width"
         android:layout_height="@dimen/little_box_height" />
-    <com.wandell.rich.reactblocks.LittleBox
+    <com.wandell.rich.reactblocks.LittleBox.LittleBox
         android:rotation="180"
         android:layout_width="@dimen/little_box_width"
         android:layout_height="@dimen/little_box_height" />
-    <com.wandell.rich.reactblocks.LittleBox
+    <com.wandell.rich.reactblocks.LittleBox.LittleBox
         android:rotation="180"
         android:layout_width="@dimen/little_box_width"
         android:layout_height="@dimen/little_box_height" />
-    <com.wandell.rich.reactblocks.LittleBox
+    <com.wandell.rich.reactblocks.LittleBox.LittleBox
         android:rotation="180"
         android:layout_width="@dimen/little_box_width"
         android:layout_height="@dimen/little_box_height" />
-    <com.wandell.rich.reactblocks.LittleBox
+    <com.wandell.rich.reactblocks.LittleBox.LittleBox
         android:rotation="180"
         android:layout_width="@dimen/little_box_width"
         android:layout_height="@dimen/little_box_height" />
-    <com.wandell.rich.reactblocks.LittleBox
+    <com.wandell.rich.reactblocks.LittleBox.LittleBox
         android:rotation="180"
         android:layout_width="@dimen/little_box_width"
         android:layout_height="@dimen/little_box_height" />
-    <com.wandell.rich.reactblocks.LittleBox
+    <com.wandell.rich.reactblocks.LittleBox.LittleBox
         android:rotation="180"
         android:layout_width="@dimen/little_box_width"
         android:layout_height="@dimen/little_box_height" />
-    <com.wandell.rich.reactblocks.LittleBox
+    <com.wandell.rich.reactblocks.LittleBox.LittleBox
         android:rotation="180"
         android:layout_width="@dimen/little_box_width"
         android:layout_height="@dimen/little_box_height" />
-    <com.wandell.rich.reactblocks.LittleBox
+    <com.wandell.rich.reactblocks.LittleBox.LittleBox
         android:rotation="180"
         android:layout_width="@dimen/little_box_width"
         android:layout_height="@dimen/little_box_height" />

@@ -1,4 +1,4 @@
-package com.wandell.rich.reactblocks;
+package com.wandell.rich.reactblocks.Helpers;
 
 import android.content.Context;
 import android.graphics.Typeface;

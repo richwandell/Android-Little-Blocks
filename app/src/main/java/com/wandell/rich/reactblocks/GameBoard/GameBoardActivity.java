@@ -1,10 +1,13 @@
-package com.wandell.rich.reactblocks;
+package com.wandell.rich.reactblocks.GameBoard;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+
+import com.wandell.rich.reactblocks.R;
+import com.wandell.rich.reactblocks.Summary.SummaryActivity;
 
 public class GameBoardActivity extends AppCompatActivity {
 
@@ -36,4 +39,6 @@ public class GameBoardActivity extends AppCompatActivity {
         i.putExtra("score", gameScore.getPoints());
         startActivity(i);
     }
+
+
 }

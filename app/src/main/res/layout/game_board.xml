@@ -12,30 +12,30 @@
     android:layout_centerInParent="true"
     android:layout_gravity="center_horizontal">
 
-    <com.wandell.rich.reactblocks.LittleBoxContainer
+    <com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer
         android:layout_height="@dimen/little_box_container_height"
         android:layout_width="wrap_content" />
-    <com.wandell.rich.reactblocks.LittleBoxContainer
-        android:layout_height="@dimen/little_box_container_height"
-        android:layout_width="wrap_content" />
-
-    <com.wandell.rich.reactblocks.LittleBoxContainer
+    <com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer
         android:layout_height="@dimen/little_box_container_height"
         android:layout_width="wrap_content" />
 
-    <com.wandell.rich.reactblocks.LittleBoxContainer
+    <com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer
         android:layout_height="@dimen/little_box_container_height"
         android:layout_width="wrap_content" />
-    <com.wandell.rich.reactblocks.LittleBoxContainer
+
+    <com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer
         android:layout_height="@dimen/little_box_container_height"
         android:layout_width="wrap_content" />
-    <com.wandell.rich.reactblocks.LittleBoxContainer
+    <com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer
         android:layout_height="@dimen/little_box_container_height"
         android:layout_width="wrap_content" />
-    <com.wandell.rich.reactblocks.LittleBoxContainer
+    <com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer
         android:layout_height="@dimen/little_box_container_height"
         android:layout_width="wrap_content" />
-    <com.wandell.rich.reactblocks.LittleBoxContainer
+    <com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer
+        android:layout_height="@dimen/little_box_container_height"
+        android:layout_width="wrap_content" />
+    <com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer
 
         android:layout_height="@dimen/little_box_container_height"
         android:layout_width="wrap_content" />
