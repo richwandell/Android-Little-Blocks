@@ -38,9 +38,12 @@ public class LittleBox extends LinearLayout {
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            container.setDying(new int[]{yValue}, false);
-            State.gameScore.addPoints(getColorValue());
-            State.gameBoard.lookForPoints();
+            if(!State.clicking) {
+                State.clicking = true;
+                container.setDying(new int[]{yValue}, false);
+                State.gameScore.addPoints(getColorValue());
+                State.gameBoard.lookForPoints();
+            }
         }
     };
 

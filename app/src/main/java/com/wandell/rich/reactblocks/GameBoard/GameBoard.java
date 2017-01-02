@@ -184,6 +184,8 @@ public class GameBoard extends RelativeLayout {
                             lookForPoints();
                         }
                     });
+                } else {
+                    State.clicking = false;
                 }
             }
         }, 1000);

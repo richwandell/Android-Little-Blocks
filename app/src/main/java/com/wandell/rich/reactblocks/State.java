@@ -10,4 +10,5 @@ public class State {
     public static GameScore gameScore;
     public static GameBoard gameBoard;
     public static boolean googlePlayEnabled = false;
+    public static boolean clicking = false;
 }
