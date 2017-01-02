@@ -11,4 +11,5 @@ public class State {
     public static GameBoard gameBoard;
     public static boolean googlePlayEnabled = false;
     public static boolean clicking = false;
+    public static int GOLD_BLOCKS = 0;
 }

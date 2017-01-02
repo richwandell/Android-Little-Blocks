@@ -149,6 +149,7 @@ public class GameBoard extends RelativeLayout {
                                 bbb.getyValue()
                         }, false);
                         found = true;
+                        State.GOLD_BLOCKS++;
                         playRobot();
                     }
                 }
@@ -156,6 +157,9 @@ public class GameBoard extends RelativeLayout {
         }
         if(found){
             unlockGoldBlockCreator();
+        }
+        if(found && State.GOLD_BLOCKS == 5){
+            unlockMasterGoldBlockCreator();
         }
     }
 
@@ -215,8 +219,17 @@ public class GameBoard extends RelativeLayout {
 
     private void checkGameNumberAchievements(){
         if(State.GAMES_PLAYED == 1) {
-            String bm = getResources().getString(R.string.achievement_level_1_block_master);
-            Games.Achievements.unlock(MainActivity.googleApiClient, bm);
+            boolean connected = MainActivity.googleApiClient.isConnected();
+            if (connected) {
+                String bm = getResources().getString(R.string.achievement_level_1_block_master);
+                Games.Achievements.unlock(MainActivity.googleApiClient, bm);
+            }
+        } else if (State.GAMES_PLAYED == 5) {
+            boolean connected = MainActivity.googleApiClient.isConnected();
+            if (connected) {
+                String bm = getResources().getString(R.string.achievement_level_5_block_master);
+                Games.Achievements.unlock(MainActivity.googleApiClient, bm);
+            }
         }
     }
 
@@ -233,6 +246,14 @@ public class GameBoard extends RelativeLayout {
         boolean connected = MainActivity.googleApiClient.isConnected();
         if (connected) {
             Games.Achievements.unlock(MainActivity.googleApiClient, getContext().getString(R.string.achievement_gold_block_creator));
+        }
+    }
+
+    private void unlockMasterGoldBlockCreator(){
+        boolean connected = MainActivity.googleApiClient.isConnected();
+        if (connected) {
+            Games.Achievements.unlock(MainActivity.googleApiClient,
+                    getContext().getString(R.string.achievement_master_gold_block_creator));
         }
     }
 }

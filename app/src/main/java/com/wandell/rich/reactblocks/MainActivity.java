@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void startGame() {
+        State.GOLD_BLOCKS = 0;
         getFragmentManager()
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
