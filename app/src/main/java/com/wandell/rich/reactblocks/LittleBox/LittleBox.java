@@ -10,8 +10,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
-import com.wandell.rich.reactblocks.GameBoard.GameBoardActivity;
+
 import com.wandell.rich.reactblocks.R;
+import com.wandell.rich.reactblocks.State;
 
 import java.util.Random;
 
@@ -38,8 +39,8 @@ public class LittleBox extends LinearLayout {
         @Override
         public void onClick(View view) {
             container.setDying(new int[]{yValue}, false);
-            GameBoardActivity.gameScore.addPoints(getColorValue());
-            GameBoardActivity.gameBoard.lookForPoints();
+            State.gameScore.addPoints(getColorValue());
+            State.gameBoard.lookForPoints();
         }
     };
 

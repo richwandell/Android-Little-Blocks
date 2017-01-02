@@ -11,4 +11,6 @@ Save this file as res/values/games-ids.xml in your project.
     <string name="achievement_diamond_block_creator" translatable="false">CgkIl7uS5a4YEAIQAw</string>
     <string name="achievement_level_5_block_master" translatable="false">CgkIl7uS5a4YEAIQBA</string>
     <string name="achievement_level_20_block_master" translatable="false">CgkIl7uS5a4YEAIQBQ</string>
+    <string name="leaderboard_top_total_achievers">CgkIl7uS5a4YEAIQBg</string>
+    <string name="leaderboard_top_single_game">CgkIl7uS5a4YEAIQBw</string>
 </resources>

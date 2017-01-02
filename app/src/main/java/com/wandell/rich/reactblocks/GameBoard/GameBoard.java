@@ -11,7 +11,7 @@ import com.wandell.rich.reactblocks.LittleBox.LittleBox;
 import com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer;
 import com.wandell.rich.reactblocks.R;
 import com.wandell.rich.reactblocks.State;
-import com.wandell.rich.reactblocks.Summary.SummaryActivity;
+import com.wandell.rich.reactblocks.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -26,10 +26,6 @@ public class GameBoard extends RelativeLayout {
     private ArrayList<LittleBoxContainer> littleBoxContainers = new ArrayList<>();
 
     private Timer timer = null;
-
-    public boolean isNeedsRemove() {
-        return needsRemove;
-    }
 
     public void setNeedsRemove(boolean needsRemove) {
         this.needsRemove = needsRemove;
@@ -51,7 +47,7 @@ public class GameBoard extends RelativeLayout {
     }
 
     private void init(){
-        GameBoardActivity.gameBoard = this;
+        State.gameBoard = this;
         inflate(getContext(), R.layout.game_board, this);
         this.setupHierarchy();
     }
@@ -104,7 +100,7 @@ public class GameBoard extends RelativeLayout {
                     _y = bb.getColorNumber();
                     _z = cc.getColorNumber();
                     if(_x == _y && _x == _z){
-                        GameBoardActivity.gameScore.addPoints(
+                        State.gameScore.addPoints(
                                 aa.getColorValue() + bb.getColorValue() + cc.getColorValue()
                         );
                         a.setDying(new int[]{aa.getyValue()}, false);
@@ -120,6 +116,7 @@ public class GameBoard extends RelativeLayout {
     }
 
     private void lfpQuad(){
+        boolean found = false;
         LittleBoxContainer a; LittleBoxContainer b; LittleBoxContainer c;
         LittleBox aa; LittleBox bb; LittleBox aaa; LittleBox bbb;
         int _a; int _b; int _aa; int _bb;
@@ -140,7 +137,7 @@ public class GameBoard extends RelativeLayout {
                     _aa = aaa.getColorNumber();
                     _bb = bbb.getColorNumber();
                     if(_a == _b && _a == _aa && _a == _bb){
-                        GameBoardActivity.gameScore.addPoints(aa.getColorValue() * 4);
+                        State.gameScore.addPoints(aa.getColorValue() * 4);
 
                         a.setGrouped(new int[]{
                                 aa.getyValue(),
@@ -151,11 +148,14 @@ public class GameBoard extends RelativeLayout {
                                 bb.getyValue(),
                                 bbb.getyValue()
                         }, false);
-
+                        found = true;
                         playRobot();
                     }
                 }
             }
+        }
+        if(found){
+            unlockGoldBlockCreator();
         }
     }
 
@@ -177,7 +177,7 @@ public class GameBoard extends RelativeLayout {
             public void run() {
                 if(needsRemove){
                     needsRemove = false;
-                    GameBoardActivity.gameBoardActivity.runOnUiThread(new Runnable() {
+                    MainActivity.mainActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             removeBoxes();
@@ -200,23 +200,37 @@ public class GameBoard extends RelativeLayout {
         }
         this.littleBoxContainers = temp;
         if(this.littleBoxContainers.size() == 0){
-            State.GAMES_PLAYED++;
-            checkGameNumberAchievements();
-            GameBoardActivity.gameBoardActivity.startScoreBoard();
+            endGame();
         }
+    }
+
+    private void endGame(){
+        State.GAMES_PLAYED++;
+        checkGameNumberAchievements();
+        MainActivity.mainActivity.showSummary();
+        submitScore();
     }
 
     private void checkGameNumberAchievements(){
         if(State.GAMES_PLAYED == 1) {
-            this.unlockAchievement(getResources().getString(R.string.achievement_level_1_block_master));
+            String bm = getResources().getString(R.string.achievement_level_1_block_master);
+            Games.Achievements.unlock(MainActivity.googleApiClient, bm);
         }
     }
 
-    private void unlockAchievement(String achievement){
+    private void submitScore(){
+        boolean connected = MainActivity.googleApiClient.isConnected();
+        if (connected) {
+            Games.Leaderboards.submitScore(MainActivity.googleApiClient,
+                    getContext().getString(R.string.leaderboard_top_single_game),
+                    State.gameScore.getPoints());
+        }
+    }
 
-        if (SummaryActivity.googleApiClient != null && SummaryActivity.googleApiClient.isConnected()) {
-            // Call a Play Games services API method, for example:
-            Games.Achievements.unlock(SummaryActivity.googleApiClient, achievement);
+    private void unlockGoldBlockCreator(){
+        boolean connected = MainActivity.googleApiClient.isConnected();
+        if (connected) {
+            Games.Achievements.unlock(MainActivity.googleApiClient, getContext().getString(R.string.achievement_gold_block_creator));
         }
     }
 }

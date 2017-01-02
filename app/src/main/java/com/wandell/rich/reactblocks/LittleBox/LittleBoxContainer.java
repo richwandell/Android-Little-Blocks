@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.wandell.rich.reactblocks.GameBoard.GameBoard;
-import com.wandell.rich.reactblocks.GameBoard.GameBoardActivity;
 import com.wandell.rich.reactblocks.R;
+import com.wandell.rich.reactblocks.State;
 
 import java.util.ArrayList;
 
@@ -86,7 +86,7 @@ public class LittleBoxContainer extends LinearLayout {
                         new int[]{a.getyValue(), b.getyValue(), c.getyValue()},
                         true
                 );
-                GameBoardActivity.gameScore.addPoints(
+                State.gameScore.addPoints(
                         a.getColorValue() + b.getColorValue() + c.getColorValue()
                 );
             }

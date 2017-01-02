@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.wandell.rich.reactblocks.BuildConfig;
+import com.wandell.rich.reactblocks.MainActivity;
 import com.wandell.rich.reactblocks.R;
+import com.wandell.rich.reactblocks.State;
 
 public class SummaryListView extends ListView {
 
@@ -23,14 +26,40 @@ public class SummaryListView extends ListView {
     private Item startGame = new Item("Start Game", R.mipmap.s_icon, new OnClickListener() {
         @Override
         public void onClick(View view) {
-            SummaryActivity.summaryActivity.startGame();
+            MainActivity.mainActivity.startGame();
         }
     });
 
     private Item showAchievements = new Item("Google Play Achievements", R.mipmap.play_ac_ribbon, new OnClickListener() {
         @Override
         public void onClick(View view) {
-            SummaryActivity.summaryActivity.showAchievements();
+            MainActivity.mainActivity.showAchievements();
+        }
+    });
+
+    private Item showLeaderboard = new Item("Google Play Leaderboard", R.mipmap.play_controller, new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            MainActivity.mainActivity.showLeaderboard();
+        }
+    });
+
+    private Item showGamesLogin = new Item("Enable Google Play Games", R.mipmap.play_controller, new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            State.googlePlayEnabled = true;
+            if(MainActivity.googleApiClient.isConnected()){
+                MainActivity.googleApiClient.reconnect();
+            }else {
+                MainActivity.googleApiClient.connect();
+            }
+        }
+    });
+
+    private Item testAchievement = new Item("Test Achievement 1", R.mipmap.play_controller, new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
         }
     });
 
@@ -50,19 +79,43 @@ public class SummaryListView extends ListView {
         init();
     }
 
+    private Item[] makeItems(Item[] items){
+        if(BuildConfig.DEBUG){
+            Item[] newItems = new Item[items.length + 1];
+            for(int i = 0; i < items.length; i++){
+                newItems[i] = items[i];
+            }
+            newItems[newItems.length - 1] = testAchievement;
+            return newItems;
+        }
+        return items;
+    }
+
     private void init(){
         summaryListView = this;
-        adapter = new SummaryAdapter(new Item[]{
-                startGame
-        });
+        if(State.googlePlayEnabled) {
+            if(MainActivity.googleApiClient.isConnected()) {
+                showLoggedinMenu();
+                return;
+            }
+        }
+        showLoggedoutMenu();
+    }
+
+    public void showLoggedoutMenu(){
+        adapter = new SummaryAdapter(makeItems(new Item[]{
+                startGame,
+                showGamesLogin
+        }));
         setAdapter(adapter);
     }
 
     public void showLoggedinMenu(){
-        adapter = new SummaryAdapter(new Item[]{
-                startGame,
-                showAchievements
-        });
+        adapter = new SummaryAdapter(makeItems(new Item[]{
+            startGame,
+            showAchievements,
+            showLeaderboard
+        }));
         setAdapter(adapter);
     }
 

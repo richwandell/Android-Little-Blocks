@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.wandell.rich.reactblocks.Helpers.TypewriterTextView;
+import com.wandell.rich.reactblocks.State;
 
 
 public class GameScore extends TypewriterTextView {
@@ -26,7 +27,7 @@ public class GameScore extends TypewriterTextView {
     }
 
     public void init(){
-        GameBoardActivity.gameScore = this;
+        State.gameScore = this;
     }
 
     public void addPoints(int points){

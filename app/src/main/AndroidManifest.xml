@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wandell.rich.reactblocks">
 
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -17,13 +16,7 @@
         tools:ignore="HardcodedDebugMode">
 
         <activity
-            android:name=".GameBoard.GameBoardActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity
-            android:name=".Summary.SummaryActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
