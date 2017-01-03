@@ -8,4 +8,7 @@
     <dimen name="little_box_container_height">550dp</dimen>
     <dimen name="little_box_container_width">45dp</dimen>
     <dimen name="little_box_container_margin">5dp</dimen>
+
+    <dimen name="play_button_text_size">14sp</dimen>
+    <dimen name="play_button_text_size_large">16sp</dimen>
 </resources>

@@ -15,4 +15,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="PlayButtonDown">
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PlayButtonUp">
+        <item name="android:textSize">9sp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

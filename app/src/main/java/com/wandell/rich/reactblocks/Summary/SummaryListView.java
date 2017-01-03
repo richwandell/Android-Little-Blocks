@@ -95,7 +95,7 @@ public class SummaryListView extends ListView {
         summaryListView = this;
         if(State.googlePlayEnabled) {
             if(MainActivity.googleApiClient.isConnected()) {
-                showLoggedinMenu();
+                MainActivity.mainActivity.displayLoggedInSummary();
                 return;
             }
         }
@@ -104,7 +104,6 @@ public class SummaryListView extends ListView {
 
     public void showLoggedoutMenu(){
         adapter = new SummaryAdapter(makeItems(new Item[]{
-                startGame,
                 showGamesLogin
         }));
         setAdapter(adapter);
@@ -112,9 +111,8 @@ public class SummaryListView extends ListView {
 
     public void showLoggedinMenu(){
         adapter = new SummaryAdapter(makeItems(new Item[]{
-            startGame,
-            showAchievements,
-            showLeaderboard
+                showAchievements,
+                showLeaderboard
         }));
         setAdapter(adapter);
     }

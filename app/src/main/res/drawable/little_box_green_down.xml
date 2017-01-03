@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:drawable="@drawable/shadow_left" />
-    <item android:drawable="@drawable/shadow_right" />
+    <item android:drawable="@drawable/little_box_shadow_left" />
+    <item android:drawable="@drawable/little_box_shadow_right" />
 
     <!-- background color -->
     <item
@@ -14,7 +14,7 @@
             <solid android:color="#008000" />
         </shape>
     </item>
-    <item android:drawable="@drawable/shadow_right" />
+    <item android:drawable="@drawable/little_box_shadow_right" />
 
 </layer-list>
 

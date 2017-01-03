@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/play_button"
+    android:orientation="vertical"
+    android:background="@drawable/play_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center_horizontal">
+
+    <com.wandell.rich.reactblocks.Helpers.TypewriterTextView
+        android:layout_marginTop="1sp"
+        android:layout_gravity="center"
+        android:textSize="@dimen/play_button_text_size"
+        android:text="@string/play"
+        android:textColor="#99706f6f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.wandell.rich.reactblocks.Helpers.TypewriterTextView
+        android:layout_marginBottom="1sp"
+        android:layout_gravity="center"
+        android:textSize="@dimen/play_button_text_size"
+        android:text="@string/play"
+        android:textColor="#99706f6f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.wandell.rich.reactblocks.Helpers.TypewriterTextView
+        android:layout_marginLeft="1sp"
+        android:layout_gravity="center"
+        android:textSize="@dimen/play_button_text_size"
+        android:text="@string/play"
+        android:textColor="#99706f6f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.wandell.rich.reactblocks.Helpers.TypewriterTextView
+        android:layout_marginRight="1sp"
+        android:layout_gravity="center"
+        android:textSize="@dimen/play_button_text_size"
+        android:text="@string/play"
+        android:textColor="#99706f6f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.wandell.rich.reactblocks.Helpers.TypewriterTextView
+        android:layout_gravity="center"
+        android:textSize="@dimen/play_button_text_size"
+        android:text="@string/play"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>

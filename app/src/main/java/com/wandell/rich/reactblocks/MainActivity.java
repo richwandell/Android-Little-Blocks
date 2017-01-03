@@ -21,14 +21,15 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.GamesActivityResultCodes;
+import com.google.android.gms.games.Player;
 import com.google.android.gms.games.stats.PlayerStats;
 import com.google.android.gms.games.stats.Stats;
 import com.wandell.rich.reactblocks.GameBoard.GameBoardFragment;
+import com.wandell.rich.reactblocks.Helpers.DBOpenHelper;
 import com.wandell.rich.reactblocks.Summary.SummaryFragment;
 import com.wandell.rich.reactblocks.Summary.SummaryListView;
 
-import java.util.ArrayList;
-
+import static com.wandell.rich.reactblocks.State.TAG;
 
 public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements
     public static final int REQUEST_ACHIEVEMENTS = 1983;
     public static final int REQUEST_LEADERBOARD = 1984;
 
-    public static final String TAG = "richd";
+    private SummaryFragment summaryFragment;
 
 
     @Override
@@ -69,6 +70,13 @@ public class MainActivity extends AppCompatActivity implements
                 .build();
 
         showSummary();
+        //setupLocalDatabase();
+    }
+
+    public void setupLocalDatabase(){
+        DBOpenHelper database = new DBOpenHelper(this);
+        DBOpenHelper.DevicePlayer devicePlayer = database.getDevicePlayer(0, null);
+        Log.d(TAG, "device player name: " + devicePlayer.getName());
     }
 
     public void startGame() {
@@ -82,10 +90,15 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     public void showSummary(){
+        DBOpenHelper database = new DBOpenHelper(this);
+        DBOpenHelper.DevicePlayer dp = database.getDevicePlayer(0, null);
+        if(summaryFragment == null) {
+            summaryFragment = new SummaryFragment();
+        }
         getFragmentManager()
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .replace(R.id.main_fragment, new SummaryFragment())
+                .replace(R.id.main_fragment, summaryFragment)
                 .addToBackStack("summaryFragment")
                 .commit();
     }
@@ -94,20 +107,6 @@ public class MainActivity extends AppCompatActivity implements
     protected void onStart() {
         super.onStart();
         googleApiClient.connect();
-
-        if (MainActivity.googleApiClient != null && MainActivity.googleApiClient.isConnected()) {
-            Intent i = getIntent();
-            if (i.hasExtra("achievements")) {
-                ArrayList<String> achievements = i.getStringArrayListExtra("achievements");
-                for (String ach : achievements) {
-                    Games.Achievements.unlock(MainActivity.googleApiClient, ach);
-                }
-            }
-
-            if (i.hasExtra("score")) {
-                int score = i.getIntExtra("score", 0);
-            }
-        }
     }
 
     @Override
@@ -120,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Log.d("richd", "connected");
+        Log.d(TAG, "connected");
         loggedIn();
     }
 
@@ -137,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onConnectionSuspended(int i) {
-        Log.d("richd", "connection suspended");
+        Log.d(TAG, "connection suspended");
     }
 
     @Override
@@ -155,10 +154,16 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void loggedIn(){
-        Log.d(TAG, "logged into google play games");
+        Log.d(TAG, "MainActivity.loggedIn");
         State.googlePlayEnabled = true;
-        SummaryListView.summaryListView.showLoggedinMenu();
+        displayLoggedInSummary();
         checkPlayerStats();
+    }
+
+    public void displayLoggedInSummary(){
+        Player currentPlayer = Games.Players.getCurrentPlayer(googleApiClient);
+        summaryFragment.showPlayerIcon(currentPlayer);
+        SummaryListView.summaryListView.showLoggedinMenu();
     }
 
     public void checkPlayerStats() {
@@ -201,14 +206,16 @@ public class MainActivity extends AppCompatActivity implements
                 if (resultCode == Activity.RESULT_OK) {
                     if (!googleApiClient.isConnected()) {
                         googleApiClient.connect();
+                    } else {
+                        loggedIn();
                     }
-                    loggedIn();
                 } else if (resultCode == GamesActivityResultCodes.RESULT_SIGN_IN_FAILED) {
-                    Log.d("richd", "sign in failed");
+                    Log.d(TAG, "sign in failed");
                 }
 
                 break;
             case REQUEST_GOOGLE_PLAY_SERVICES_ERROR:
+                Log.d(TAG, "REQUEST_GOOGLE_PLAY_SERVICES_ERROR");
                 break;
 
             case REQUEST_LEADERBOARD:
