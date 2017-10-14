@@ -1,0 +1,37 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="points_blast_data" version="1.3.0" audacityversion="2.1.3" sel0="-0.0000000000" sel1="0.5942857143" vpos="0" h="0.0150312650" zoom="931.3920000000" rate="44100.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags>
+		<tag name="Software" value="FL Studio 10"/>
+	</tags>
+	<wavetrack name="167242__nfrae__fireworkblast" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="26208">
+				<waveblock start="0">
+					<simpleblockfile filename="e00005c1.au" len="26208" min="-0.74469" max="0.677368" rms="0.180836"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="4">
+				<controlpoint t="0.000005000000" val="1.000000000000"/>
+				<controlpoint t="0.302235793307" val="1.063380241394"/>
+				<controlpoint t="0.412554542019" val="0.570422530174"/>
+				<controlpoint t="0.588917405346" val="0.042253494263"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="167242__nfrae__fireworkblast" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="26208">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000047.au" len="26208" min="-0.691223" max="0.707397" rms="0.185443"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="4">
+				<controlpoint t="0.000005000000" val="1.000000000000"/>
+				<controlpoint t="0.302235793307" val="1.063380241394"/>
+				<controlpoint t="0.412554542019" val="0.570422530174"/>
+				<controlpoint t="0.588917405346" val="0.042253494263"/>
+			</envelope>
+		</waveclip>
+	</wavetrack>
+</project>

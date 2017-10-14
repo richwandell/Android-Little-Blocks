@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.wandell.rich.reactblocks.BuildConfig;
 import com.wandell.rich.reactblocks.MainActivity;
 import com.wandell.rich.reactblocks.R;
 import com.wandell.rich.reactblocks.State;
@@ -80,14 +79,14 @@ public class SummaryListView extends ListView {
     }
 
     private Item[] makeItems(Item[] items){
-        if(BuildConfig.DEBUG){
-            Item[] newItems = new Item[items.length + 1];
-            for(int i = 0; i < items.length; i++){
-                newItems[i] = items[i];
-            }
-            newItems[newItems.length - 1] = testAchievement;
-            return newItems;
-        }
+//        if(BuildConfig.DEBUG){
+//            Item[] newItems = new Item[items.length + 1];
+//            for(int i = 0; i < items.length; i++){
+//                newItems[i] = items[i];
+//            }
+//            newItems[newItems.length - 1] = testAchievement;
+//            return newItems;
+//        }
         return items;
     }
 

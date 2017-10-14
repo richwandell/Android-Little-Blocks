@@ -8,9 +8,11 @@
     android:gravity="bottom|center_horizontal"
     android:hapticFeedbackEnabled="true"
     app:layout_anchorGravity="center_horizontal"
+    android:id="@+id/the_game_board"
     android:layout_centerHorizontal="true"
     android:layout_centerInParent="true"
     android:layout_gravity="center_horizontal">
+
 
     <com.wandell.rich.reactblocks.LittleBox.LittleBoxContainer
         android:layout_height="@dimen/little_box_container_height"

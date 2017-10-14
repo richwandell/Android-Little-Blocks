@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'my keystore'
             keyPassword 'Androidporn123!'
-            storeFile file('/Users/richwandell/android_keystore/key.jks')
+            storeFile file('../Users/richwandell/android_keystore/key.jks')
             storePassword 'Androidporn123!'
         }
     }
@@ -15,7 +15,7 @@ android {
         applicationId "com.wandell.rich.reactblocks"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 6
+        versionCode 8
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -41,5 +41,6 @@ dependencies {
     compile 'com.android.support:design:25.1.0'
     compile 'com.google.android.gms:play-services:10.0.1'
     compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.plattysoft.leonids:LeonidsLib:1.3.2'
     testCompile 'junit:junit:4.12'
 }

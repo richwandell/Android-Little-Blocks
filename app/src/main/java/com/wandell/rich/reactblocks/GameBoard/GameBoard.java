@@ -192,7 +192,7 @@ public class GameBoard extends RelativeLayout {
                     State.clicking = false;
                 }
             }
-        }, 1000);
+        }, getResources().getInteger(R.integer.little_box_animation_duration));
     }
 
     private void removeBoxes(){

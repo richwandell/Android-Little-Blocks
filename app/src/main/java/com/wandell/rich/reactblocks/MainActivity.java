@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.main_fragment_container);
         View mDecorView = getWindow().getDecorView();
         mDecorView.setSystemUiVisibility(
