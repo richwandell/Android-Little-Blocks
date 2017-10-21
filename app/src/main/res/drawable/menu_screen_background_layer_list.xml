@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape
+            android:shape="oval">
+            <solid android:color="#00c853" />
+            <size
+                android:width="100dp"
+                android:height="100dp" />
+        </shape>
+    </item>
+
+    <item
+        android:width="8dp"
+        android:height="50dp"
+        android:drawable="@drawable/triangle"
+        android:gravity="center_horizontal" />
+
+    <item
+        android:width="6dp"
+        android:height="50dp"
+        android:top="1dp"
+        android:left="53dp">
+        <rotate
+            android:drawable="@drawable/triangle"
+            android:toDegrees="15"
+            android:fromDegrees="15" />
+    </item>
+
+    <item
+        android:width="8dp"
+        android:height="50dp"
+        android:top="3dp"
+        android:left="57dp">
+        <rotate
+            android:drawable="@drawable/triangle"
+            android:toDegrees="30"
+            android:fromDegrees="30" />
+    </item>
+
+    <item
+        android:width="6dp"
+        android:height="50dp"
+        android:top="6dp"
+        android:left="63dp">
+        <rotate
+            android:drawable="@drawable/triangle"
+            android:toDegrees="45"
+            android:fromDegrees="45" />
+    </item>
+
+    <item
+        android:width="8dp"
+        android:height="50dp"
+        android:top="11dp"
+        android:left="66dp">
+        <rotate
+            android:drawable="@drawable/triangle"
+            android:toDegrees="60"
+            android:fromDegrees="60" />
+    </item>
+
+    <item
+        android:width="6dp"
+        android:height="52dp"
+        android:top="16dp"
+        android:left="69dp">
+        <rotate
+            android:drawable="@drawable/triangle"
+            android:toDegrees="75"
+            android:fromDegrees="75" />
+    </item>
+
+    <item
+        android:width="8dp"
+        android:height="53dp"
+        android:top="22dp"
+        android:left="70dp">
+        <rotate
+            android:drawable="@drawable/triangle"
+            android:toDegrees="90"
+            android:fromDegrees="90" />
+    </item>
+
+    <item
+        android:width="6dp"
+        android:height="54dp"
+        android:top="28dp"
+        android:left="70dp">
+        <rotate
+            android:drawable="@drawable/triangle"
+            android:toDegrees="105"
+            android:fromDegrees="105" />
+    </item>
+
+</layer-list>
